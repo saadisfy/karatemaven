@@ -1,10 +1,14 @@
 apiVersion: executor.testkube.io/v1
 kind: Executor
 metadata:
-  name: karate-maven-executor
-  namespace: testkube
+  name: karate-maven-executor # name of the executor
+  namespace: testkube # if testkube is installed in default ns
 spec:
   executor_type: job
-  image: saadisfy/karatemaven-executor:latest
+  features:
+    - artifacts # shows artifact tab in UI
+    - junit-report
+  image: saadisfy/karatemaven-executor:latest #docker hub ref
   types:
-    - karate/maven
+    - karate/maven # type of test to reference this executor
+
