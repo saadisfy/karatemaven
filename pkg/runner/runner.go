@@ -101,6 +101,9 @@ func (r *KarateRunner) Run(ctx context.Context, execution testkube.Execution) (r
 		envVars = append(envVars, fmt.Sprintf("%s=%s", value.Name, value.Value))
 	}
 	//run tests while ignoring execution error in case of failed tests
+
+	output.PrintLogf("%s: DebugMode projectPath = "+projectPath, ui.IconMicroscope) //todo delete this line
+	output.PrintLogf("%s: DebugMode runPath = "+runPath, ui.IconMicroscope)         //todo delete this line
 	out, err := executor.Run(runPath, "mvn test", envManager)
 	out = envManager.ObfuscateSecrets(out)
 
