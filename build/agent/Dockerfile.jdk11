@@ -10,7 +10,7 @@ RUN cd cmd/agent;go build -o /runner -mod mod -a .
 
 FROM maven:3.8.6-jdk-11
 COPY --from=builder /runner /bin/runner
-
+RUN apt-get update && apt-get install -y zip
 RUN useradd -m -d /home/maven -s /bin/bash -u 1001 -r -g root maven
 ENV MAVEN_CONFIG "/home/maven/.m2"
 USER 1001
